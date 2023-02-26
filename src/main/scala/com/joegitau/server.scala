@@ -1,8 +1,8 @@
 package com.joegitau
 
 import akka.NotUsed
-import akka.actor.typed.{ActorSystem, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
+import akka.actor.typed.{ActorSystem, Behavior}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import com.joegitau.actors.PlayerActor
@@ -11,8 +11,7 @@ import com.joegitau.http.PlayerRouter
 import com.joegitau.services.PlayerServiceImpl
 import com.joegitau.slick.Connection.Db
 
-import scala.concurrent.duration.DurationInt
-import scala.concurrent.{ExecutionContext, ExecutionContextExecutor}
+import scala.concurrent.ExecutionContextExecutor
 import scala.util.{Failure, Success}
 
 // Entrypoint: used as the root behavior of our actor system
@@ -54,7 +53,7 @@ object server {
     val actorSystem = ActorSystem(userGuardian, "simple-akka-slick-system")
 
     // optional - terminate after 10 minutes
-    implicit val ec: ExecutionContext = actorSystem.executionContext
-    actorSystem.scheduler.scheduleOnce(10.minutes, () => actorSystem.terminate())
+    // implicit val ec: ExecutionContext = actorSystem.executionContext
+    // actorSystem.scheduler.scheduleOnce(10.minutes, () => actorSystem.terminate())
   }
 }

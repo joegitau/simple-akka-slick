@@ -11,7 +11,7 @@ class PlayerTable(tag: Tag) extends Table[Player](tag, "players") {
   def lastName    = column[String]("last_name")
   def nationality = column[String]("nationality")
   def team        = column[String]("team")
-  def created     = column[Instant]("created")
+  def created     = column[Option[Instant]]("created")
   def modified    = column[Option[Instant]]("modified")
 
   override def * = (id, firstName, lastName, nationality, team, created, modified) <> (Player.tupled, Player.unapply)

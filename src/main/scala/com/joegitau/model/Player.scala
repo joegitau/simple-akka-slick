@@ -1,7 +1,5 @@
 package com.joegitau.model
 
-import play.api.libs.json.{Json, OFormat}
-
 import java.time.Instant
 
 case class Player(
@@ -10,17 +8,13 @@ case class Player(
   lastName:    String,
   nationality: String,
   team:        String,
-  created:     Instant,
+  created:     Option[Instant],
   modified:    Option[Instant]
-) {
-  implicit val playerFormat: OFormat[Player] = Json.format
-}
+)
 
 case class PatchPlayer(
   firstName:   Option[String],
   lastName:    Option[String],
   nationality: Option[String],
   team:        Option[String],
-) {
-  implicit val patchPlayerFormat: OFormat[PatchPlayer] = Json.format
-}
+)

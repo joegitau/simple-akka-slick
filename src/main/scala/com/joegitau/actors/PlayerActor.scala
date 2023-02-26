@@ -8,13 +8,14 @@ import com.joegitau.protocol.PlayerProtocol.PlayerCommand
 import com.joegitau.protocol.PlayerProtocol.PlayerResponse._
 import com.joegitau.services.PlayerService
 
+import scala.concurrent.ExecutionContextExecutor
 import scala.util.{Failure, Success}
 
 object PlayerActor {
   def apply(playerService: PlayerService): Behavior[PlayerCommand] = Behaviors.receive { (ctx, msg) =>
     ctx.log.info("Player actor initialized...")
 
-    implicit val ec = ctx.system.executionContext
+    implicit val ec: ExecutionContextExecutor = ctx.system.executionContext
 
     msg match {
       case PlayerCommand.CreatePlayer(player, replyTo)     =>

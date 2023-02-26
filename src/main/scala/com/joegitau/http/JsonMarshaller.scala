@@ -1,7 +1,7 @@
 package com.joegitau.http
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import com.joegitau.model.{PatchPlayer, Player}
+import com.joegitau.model.Player
 import spray.json.{DefaultJsonProtocol, JsNumber, JsValue, JsonFormat, RootJsonFormat, deserializationError}
 
 import java.sql.Timestamp
@@ -29,5 +29,5 @@ trait JsonMarshaller extends DefaultJsonProtocol with SprayJsonSupport {
   }
 
   implicit val playerJsSprayFormat: RootJsonFormat[Player]           = jsonFormat7(Player)
-  implicit val patchPlayerJsSprayFormat: RootJsonFormat[PatchPlayer] = jsonFormat4(PatchPlayer)
+  // implicit val patchPlayerJsSprayFormat: RootJsonFormat[PatchPlayer] = jsonFormat4(PatchPlayer)
 }
