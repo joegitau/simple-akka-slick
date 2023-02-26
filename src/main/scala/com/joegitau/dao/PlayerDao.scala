@@ -4,7 +4,7 @@ import com.joegitau.model.{PatchPlayer, Player}
 import com.joegitau.slick.CustomPostgresProfile.api._
 import com.joegitau.slick.tables.PlayerTable.Players
 
-import java.sql.Timestamp
+import java.time.Instant
 import scala.concurrent.{ExecutionContext, Future}
 
 trait PlayerDao {
@@ -42,7 +42,7 @@ class PlayerDaoImpl(db: Database)(implicit ec: ExecutionContext) extends PlayerD
           lastName    = player.lastName.getOrElse(existing.lastName),
           nationality = player.nationality.getOrElse(existing.nationality),
           team        = player.team.getOrElse(existing.team),
-          modified    = Some(new Timestamp(System.currentTimeMillis()))
+          modified    = Some(Instant.now())
         )
         query.update(updatedPlayer) andThen query.result.headOption
 

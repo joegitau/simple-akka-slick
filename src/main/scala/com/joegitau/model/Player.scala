@@ -2,7 +2,7 @@ package com.joegitau.model
 
 import play.api.libs.json.{Json, OFormat}
 
-import java.sql.Timestamp
+import java.time.Instant
 
 case class Player(
   id:          Option[Int],
@@ -10,8 +10,8 @@ case class Player(
   lastName:    String,
   nationality: String,
   team:        String,
-  created:     Timestamp,
-  modified:    Option[Timestamp]
+  created:     Instant,
+  modified:    Option[Instant]
 ) {
   implicit val playerFormat: OFormat[Player] = Json.format
 }

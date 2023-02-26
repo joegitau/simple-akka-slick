@@ -71,7 +71,7 @@ class PlayerRouter(playerActor: ActorRef[PlayerCommand])(implicit system: ActorS
   }
 
   def deletePlayer(id: Int): Route = {
-    (path("delete" / id) & delete) {
+    // (path("delete" / id) & delete) {
       val toDelete = playerActor.ask(DeletePlayer(id, _))
 
       onSuccess(toDelete) {
@@ -79,7 +79,7 @@ class PlayerRouter(playerActor: ActorRef[PlayerCommand])(implicit system: ActorS
           complete(StatusCodes.OK -> s"Successfully deleted player with id: $id")
         case StatusReply.Error(reason)                    => complete(StatusCodes.InternalServerError -> reason)
       }
-    }
+    // }
   }
 
   val routes: Route = pathPrefix("api" / "players") {
@@ -93,7 +93,7 @@ class PlayerRouter(playerActor: ActorRef[PlayerCommand])(implicit system: ActorS
         pathPrefix(IntNumber) { id => updatePlayer(id) }
       },
       delete {
-        pathPrefix( IntNumber) { id => deletePlayer(id) }
+        pathPrefix(IntNumber) { id => deletePlayer(id) }
       }
     )
   }
