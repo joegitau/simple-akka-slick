@@ -1,4 +1,6 @@
--- connect to db
+-- database setup
+DROP DATABASE IF EXISTS simple_akka_slick_db;
+CREATE DATABASE simple_akka_slick_db;
 \c simple_akka_slick_db;
 
 -- players table
