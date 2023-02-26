@@ -1,7 +1,8 @@
 package com.joegitau.model
 
-import java.sql.Timestamp
+import play.api.libs.json.{Json, OFormat}
 
+import java.sql.Timestamp
 
 case class Player(
   id:          Option[Int],
@@ -11,4 +12,15 @@ case class Player(
   team:        String,
   created:     Timestamp,
   modified:    Option[Timestamp]
-)
+) {
+  implicit val playerFormat: OFormat[Player] = Json.format
+}
+
+case class PatchPlayer(
+  firstName:   Option[String],
+  lastName:    Option[String],
+  nationality: Option[String],
+  team:        Option[String],
+) {
+  implicit val patchPlayerFormat: OFormat[PatchPlayer] = Json.format
+}
